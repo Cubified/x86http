@@ -4,9 +4,13 @@ An HTTP file server written in x86_64 Assembly.  Designed to be extremely simple
 
 By design, only supports 200 and 404 status codes over HTTP/1.1, effectively the bare minimum for serving files to a browser.
 
+### Benchmarks
+
+Coming!
+
 ### Compiling and Running
 
-`x86http` requires `nasm` to compile, and by default uses `ld.lld` for linking (the default linker for Clang) although this is not a requirement.  Compile with:
+`x86http` requires `nasm` to compile, and will use `ld.lld` (default linker with Clang) if you are running on musl and `ld` (the GNU linker) if you are not.  Compile with:
 
      $ make
 
@@ -20,4 +24,4 @@ This will start the server on port 5123.  Navigate to:
      (or)
      http://{your IP address}:5123/...
 
-To view files in the current working directory.  There is currently no automatically-generated `index.html` containing a list of all possible files, meaning `index.html` will 404 if not present.
+To view files in the current working directory.

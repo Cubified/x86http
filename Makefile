@@ -1,9 +1,9 @@
 all: x86http
 
 ASM=nasm
-LD=ld.lld
+LD=$(shell ./libc_test.sh linker)
 
-LIBS=-dynamic-linker /lib/ld-musl-x86_64.so.1 -lc
+LIBS=$(shell ./libc_test.sh libs)
 
 NASMFLAGS=
 LDFLAGS=-s --library-path=/usr/lib
