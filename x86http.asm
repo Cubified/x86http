@@ -3,12 +3,6 @@
 ;
 
 ;
-; COMPILE-TIME CONSTANTS
-;
-sys_write equ 0x01
-sys_exit equ 0x3C
-
-;
 ; STRUCTS
 ;
 struc sockaddr_in
@@ -33,9 +27,9 @@ msg_req db 0x1b, "[36mRequest: ", 0x1b, "[33m%s ", 0x0
 msg_200 db 0x1b, "[32m(200)", 0x1b, "[0m", 0xa, 0x0
 msg_404 db 0x1b, "[31m(404)", 0x1b, "[0m", 0xa, 0x0
 
-err_generic db "Error"
+err_generic db "Error", 0x0
 
-http_req db "GET %s HTTP/1.1"
+http_req db "GET %s HTTP/1.1", 0x0
 http_404 db "HTTP/1.1 404 Not Found", 0xd, 0xa, 0x0
 http_200 db "HTTP/1.1 200 OK\r\nContent-Length: %li\r\nContent-Type: text/plain", 0xd, 0xa, 0xd, 0xa, 0x0
 
@@ -95,7 +89,7 @@ extern fclose
 fail:
   mov rdi, err_generic
   call perror
-  mov rax, sys_exit
+  mov rax, 0x3C ; exit syscall
   mov rdi, 1
   syscall
 

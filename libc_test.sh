@@ -10,6 +10,11 @@
 # but this works for the time being.
 #
 
+if [ "$1" = "" ]; then
+  echo "Usage: ./libc_test.sh [linker|libs]"
+  exit
+fi
+
 if [ -e "/lib/ld-musl-x86_64.so.1" ]; then
   if [ "$1" = "linker" ]; then
     echo "ld.lld"
